@@ -35,6 +35,10 @@ Route::get('/explorar', function () {
     return view('explorar');
 })->middleware('auth');
 
+Route::get('/perfil', function () {
+    return view('perfil');
+})->middleware('auth');
+
 Route::resource('libros', LibroController::class);
 Route::resource('categorias', CategoriaController::class);
 

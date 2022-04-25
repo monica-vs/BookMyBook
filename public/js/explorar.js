@@ -10,9 +10,10 @@ let contenedor_libros = document.getElementById('libros');
 
 function imprimir(datos) {
     console.log(datos);
-
+    
     for (let i = 0; i < datos.length; i++) {
-
+         
+        
         //Creación de elementos de cada 'card'
         let card = document.createElement('div');
         card.classList = 'card';
@@ -43,6 +44,11 @@ function imprimir(datos) {
             if(jsonCategorias[j].id == datos[i].categoria){
                 categoria = jsonCategorias[j].titulo;
             }
+        }
+        
+        //Quitamos los libros que pertenecen al usuario autenticado
+        if(datos[i].usuario_id == user_id){
+            continue;
         }
         
         card_title.innerText = datos[i].titulo;
