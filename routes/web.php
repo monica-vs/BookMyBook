@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LibroController;
 use App\Http\Controllers\CategoriaController;
+use App\Models\Libro;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +38,12 @@ Route::get('/explorar', function () {
 
 Route::get('/perfil', function () {
     return view('perfil');
+})->middleware('auth');
+
+
+Route::get('/libro/{n}', function ($n) {
+    $libro = Libro::where('id', '=', $n)->get();
+    return view('libro')->with(['libro'=>$libro]);
 })->middleware('auth');
 
 Route::resource('libros', LibroController::class);

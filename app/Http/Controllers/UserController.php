@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class UserController extends Controller
 {
@@ -45,7 +46,9 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $usuario = User::where('id','=',$id);
+        $nombre = $usuario->name;
+        return response()->json($nombre);
     }
 
     /**

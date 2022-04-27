@@ -15,7 +15,6 @@ class LibroController extends Controller
      */
     public function index()
     {
-        $usuario_id = Auth::user()->id;
         $libros = Libro::all();
         return response()->json($libros);
     }
@@ -53,7 +52,7 @@ class LibroController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -87,6 +86,6 @@ class LibroController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Libro::where('id','=',$id)->delete();
     }
 }

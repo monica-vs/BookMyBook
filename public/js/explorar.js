@@ -51,6 +51,11 @@ function imprimir(datos) {
             continue;
         }
         
+        //Evento del boton de info
+        button_info.addEventListener('click', function(e){
+            window.location.href = "http://127.0.0.1:8000/libro/"+datos[i].id;
+        })
+        
         card_title.innerText = datos[i].titulo;
         card_text.innerHTML = "<b>ISBN: </b>" + datos[i].isbn + "<br>" + "<b>Autor: </b>" + datos[i].autor + "<br>" + "<b>Categoria: </b>" + categoria + "<br>" + "<div class='precio'" + datos[i].precio + "</div>";
 

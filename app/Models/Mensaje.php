@@ -10,6 +10,6 @@ class Mensaje extends Model
     use HasFactory;
     
     protected $table = 'mensajes';
-    public $timestamps = false;
+    public $timestamps = true;
     protected $primaryKey = 'id';
 }
