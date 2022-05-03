@@ -5,13 +5,11 @@
         <group>
             <file>file:/C:/xampp/htdocs/BookMyBook/BookMyBook/resources/views/nuevolibro.blade.php</file>
             <file>file:/C:/xampp/htdocs/BookMyBook/BookMyBook/routes/web.php</file>
-            <file>file:/C:/xampp/htdocs/BookMyBook/BookMyBook/app/Http/Controllers/LibroController.php</file>
             <file>file:/C:/xampp/htdocs/BookMyBook/BookMyBook/app/Http/Controllers/UserController.php</file>
-            <file>file:/C:/xampp/htdocs/BookMyBook/BookMyBook/public/js/explorar.js</file>
-            <file>file:/C:/xampp/htdocs/BookMyBook/BookMyBook/public/css/explorar.css</file>
-            <file>file:/C:/xampp/htdocs/BookMyBook/BookMyBook/resources/views/perfil.blade.php</file>
-            <file>file:/C:/xampp/htdocs/BookMyBook/BookMyBook/resources/views/explorar.blade.php</file>
-            <file>file:/C:/xampp/htdocs/BookMyBook/BookMyBook/resources/views/libro.blade.php</file>
+            <file>file:/C:/xampp/htdocs/BookMyBook/BookMyBook/public/js/perfil.js</file>
+            <file>file:/C:/xampp/htdocs/BookMyBook/BookMyBook/public/css/home.css</file>
+            <file>file:/C:/xampp/htdocs/BookMyBook/BookMyBook/resources/views/home.blade.php</file>
+            <file>file:/C:/xampp/htdocs/BookMyBook/BookMyBook/public/css/main.css</file>
         </group>
     </open-files>
 </project-private>

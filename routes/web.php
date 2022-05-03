@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LibroController;
 use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\UserController;
 use App\Models\Libro;
 
 /*
@@ -18,7 +19,7 @@ use App\Models\Libro;
 
 Route::get('/', function () {
     return view('inicio');
-})->middleware('guest');
+})->middleware('guest')->name('inicio');
 
 Route::get('/login', function () {
     return view('login');
@@ -38,7 +39,7 @@ Route::get('/explorar', function () {
 
 Route::get('/perfil', function () {
     return view('perfil');
-})->middleware('auth');
+})->middleware('auth')->name('perfil');
 
 
 Route::get('/libro/{n}', function ($n) {
@@ -48,6 +49,7 @@ Route::get('/libro/{n}', function ($n) {
 
 Route::resource('libros', LibroController::class);
 Route::resource('categorias', CategoriaController::class);
+Route::resource('users', UserController::class);
 
 Auth::routes();
 

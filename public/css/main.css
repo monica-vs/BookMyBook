@@ -4,6 +4,8 @@
 
 html {
     background-color: #ececec;
+    //background: url(../img/SimpleShiny.svg) no-repeat center center fixed;
+    background-size: cover;
     font-family: 'Roboto', sans-serif;
 }
 
@@ -22,15 +24,37 @@ nav {
 }
 
 .banner {
-    background-image: url(../img/banner.svg);
-    background-position: center center;
-    height: 30rem;
+    background-image: url(../img/old-books.jpg);
+    background-size: 80vw;
+    background-repeat: no-repeat;
+    background-position-y: -15rem;
+    height: 15rem;
+    //background-color: rgba(40,56,69,0.6839110644257703);
+    border-radius: 10rem;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
+
 .bienvenida {
-    color: #283845;
+    color: white;
+    //text-shadow:1px 0 0 black,0 1px 0 black,-1px 0 0 black,0 -1px 0 black;
+    text-shadow: -1px 1px 2px #000,
+				  1px 1px 2px #000,
+				  1px -1px 0 #000,
+				  -1px -1px 0 #000;
     font-weight: 600;
     font-size: 3rem;
+}
+
+.texto-bienvenida {
+    
+    padding: 2rem;
+    height: 10rem;
+    width: 130rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    alignt-items: center;
 }
 
 button{
@@ -42,10 +66,7 @@ button{
     background-color: #E1E3DE;
 }
 
-.boton2:hover {
-    background-color: #249D63;
-    color: #eeeeee;
-}
+
 
 .t2 {
     color: #283845;

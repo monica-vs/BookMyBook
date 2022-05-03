@@ -11,7 +11,6 @@
     
     var_dump($lib);
     ?>
-    
 </div>
 
 @endsection
