@@ -17,10 +17,12 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+        <link href="{{ asset('css/fontawesome/css/all.css') }}" rel="stylesheet">
+
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link href="{{ asset('css/main.css') }}" rel="stylesheet" type="text/css" >
-        
+
         <!-- Incluir aqui scripts/estilos de forma dinamica -->
         @stack('head')
     </head>
@@ -41,10 +43,12 @@
                     <button type="button" onclick="window.location ='{{ url("login") }}'" class="btn btn-light boton">Iniciar sesión</button>
                     <button type="button" onclick="window.location ='{{ url("register")}}'" class="btn btn-light boton">Registrarse</button>
                     @else
-                    <button type="button" onclick="window.location ='{{ url("perfil")}}'" class="btn btn-light boton">Mi perfil</button>
+                    <button type="button" onclick="window.location ='{{ url("carrito")}}'" class="btn btn-light boton"><i class="fa-solid fa-cart-shopping fa-lg"></i></button>
+                    <button type="button" onclick="window.location ='{{ url("mensajes")}}'" class="btn btn-light boton"><i class="fa-solid fa-message fa-lg"></i></button>
+                    <button type="button" onclick="window.location ='{{ url("perfil")}}'" class="btn btn-light boton"><i class="fa-solid fa-user fa-lg"></i></button>
                     <button type="button" href="{{ route('logout') }}"
                             onclick="event.preventDefault();
-                                           document.getElementById('logout-form').submit();" class="btn btn-light boton">Salir</button>
+                                document.getElementById('logout-form').submit();" class="btn btn-light boton"><i class="fa-solid fa-right-from-bracket fa-lg"></i></button>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                         @csrf
                     </form>

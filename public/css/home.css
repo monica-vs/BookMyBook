@@ -27,3 +27,16 @@ and open the template in the editor.
 #read {
     height: 12rem;
 }
+
+.acciones {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+h5 {
+    font-weight: bold;
+}
+
+.boton2:hover {
+    background-color: gray;
+}

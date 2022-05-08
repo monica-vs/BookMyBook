@@ -13,9 +13,10 @@
             </div>
             <h2 class="t2">¿Qué quieres hacer hoy?</h2>
         </div>
-        <div class="row">
+        <div class="row acciones">
             <div class="col">
                 <div class="card text-center h-100">
+                    <img src="{{asset('img/library.jpg')}}" class="card-img-top">
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title">Explorar</h5>
                         <div class="h-50 d-flex align-items-center justify-content-center py-4">
@@ -28,6 +29,7 @@
             </div>
             <div class="col">
                 <div class="card text-center h-80">
+                    <img src="{{asset('img/sell.jpg')}}" class="card-img-top">
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title">Vender</h5>
                         <div class="h-50 d-flex align-items-center justify-content-center py-4">
@@ -39,6 +41,7 @@
             </div>
             <div class="col">
                 <div class="card text-center h-100">
+                    <img src="{{asset('img/list.jpg')}}" class="card-img-top">
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title">Revisar tu historial</h5>
                         <div class="h-50 d-flex align-items-center justify-content-center py-4">

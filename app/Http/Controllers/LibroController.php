@@ -39,6 +39,11 @@ class LibroController extends Controller
     {
         $datos = request()->except("_token");
         $usuario_id = Auth::user()->id;
+        
+        if($request->hasFile('imagen')){
+            $datos['imagen']=$request->file('imagen')->store('uploads','public');
+        }
+        
         $datos2 = array_merge($datos, ['usuario_id' => $usuario_id]);
         Libro::insert($datos2);
         return view('nuevolibro');

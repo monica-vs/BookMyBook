@@ -41,6 +41,17 @@ Route::get('/perfil', function () {
     return view('perfil');
 })->middleware('auth')->name('perfil');
 
+Route::get('/explorar', function () {
+    return view('explorar');
+})->middleware('auth');
+
+Route::get('/carrito', function () {
+    return view('carrito');
+})->middleware('auth');
+
+Route::get('/mensajes', function () {
+    return view('mensajes');
+})->middleware('auth');
 
 Route::get('/libro/{n}', function ($n) {
     $libro = Libro::where('id', '=', $n)->get();

@@ -19,10 +19,14 @@ function imprimir(datos) {
         card.classList = 'card';
         let card_title = document.createElement('div');
         card_title.classList = 'card-header';
+        let card_img = document.createElement('img');
+        card_img.classList = 'card-img-top';
         let card_body = document.createElement('div');
         card_body.classList = 'card-body';
         let card_text = document.createElement('div');
         card_text.classList = 'card-text';
+        let precio = document.createElement('div');
+        precio.classList = 'precio';
         let botones = document.createElement('div');
         let button_info = document.createElement('button');
         button_info.classList = 'btn btn-dark'
@@ -58,10 +62,20 @@ function imprimir(datos) {
 
         card_title.innerText = datos[i].titulo;
         card_text.innerHTML = "<b>ISBN: </b>" + datos[i].isbn + "<br>" + "<b>Autor: </b>" + datos[i].autor + "<br>" + "<b>Categoria: </b>" + categoria + "<br>" + "<div class='precio'" + datos[i].precio + "</div>";
+        precio.innerText = datos[i].precio + '€';
+        
+        if (datos[i].imagen == null) {
+            card_img.src = 'https://img.freepik.com/free-vector/blank-book-cover-white-vector-illustration_1284-41903.jpg?t=st=1652052153~exp=1652052753~hmac=164eebdee34e2f8e4bccff592e98e9673cd38ee380948fc667588434c374ba6b&w=740';
+        } else {
+            card_img.src = datos[i].imagen;
+        }
+
 
         card.append(card_title);
+        card.append(card_img);
         card.append(card_body);
         card_body.append(card_text);
+        card_body.append(precio);
         card_body.append(botones);
         botones.append(button_info);
         botones.append(button_comprar);
