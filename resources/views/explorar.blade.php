@@ -14,7 +14,7 @@
         </div>
         <div>
             <select id="b-seleccion" class="form-select" aria-label="Default select example">
-                <option selected>Categoría</option>
+                <option value="0" selected>Filtrar por categoría</option>
                 <option value="1">Arte y literatura</option>
                 <option value="2">Ciencias y tecnología</option>
                 <option value="3">Cocina</option>
@@ -35,7 +35,9 @@
             </select>
         </div>
     </div>
-
+    <div id="c-load">
+        <div id="load"><span class="loader"></span></div>
+    </div>
     <div id='libros'>
 
     </div>
@@ -44,11 +46,12 @@
 </div>
 
 <?php
-    $user_id = Auth::user()->id;
+$user_id = Auth::user()->id;
 ?>
 <script>
     //Pasamos número de usuario autenticado al código JavaScript
-    let user_id = {!! json_encode($user_id) !!};
+    let user_id = {!! json_encode($user_id) !!}
+    ;
 </script>
 
 @push('head')

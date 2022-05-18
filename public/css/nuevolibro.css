@@ -1,0 +1,29 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 16 may. 2022, 0:10:23
+    Author     : monic
+*/
+
+.active {
+    background-color: #249D63 !important;
+}
+
+.c-principal{
+    height: 80vh;
+}
+
+.c-display {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 3rem;
+}
+
+#l-libros {
+    flex-grow: 1;
+}

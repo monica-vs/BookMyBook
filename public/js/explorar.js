@@ -9,7 +9,8 @@ let contenedor_libros = document.getElementById('libros');
 
 
 function imprimir(datos) {
-    console.log(datos);
+    let load = document.getElementById('c-load');
+    load.hidden = true;
 
     for (let i = 0; i < datos.length; i++) {
 
@@ -61,9 +62,9 @@ function imprimir(datos) {
         })
 
         card_title.innerText = datos[i].titulo;
-        card_text.innerHTML = "<b>ISBN: </b>" + datos[i].isbn + "<br>" + "<b>Autor: </b>" + datos[i].autor + "<br>" + "<b>Categoria: </b>" + categoria + "<br>" + "<div class='precio'" + datos[i].precio + "</div>";
+        card_text.innerHTML = "<span class='isbn'><b>ISBN: </b>" + datos[i].isbn + "</span><br>" + "<span class='autor'><b>Autor: </b>" + datos[i].autor + "</span><br>" + "<span class='categoria'><b>Categoria: </b>" + categoria + "<span class='categoria-id' hidden='hidden'>" + datos[i].categoria + "</span></span><br>" + "<span class='precio'><div class='precio'" + datos[i].precio + "</span></div>";
         precio.innerText = datos[i].precio + '€';
-        
+
         if (datos[i].imagen == null) {
             card_img.src = 'https://img.freepik.com/free-vector/blank-book-cover-white-vector-illustration_1284-41903.jpg?t=st=1652052153~exp=1652052753~hmac=164eebdee34e2f8e4bccff592e98e9673cd38ee380948fc667588434c374ba6b&w=740';
         } else {
@@ -93,7 +94,7 @@ boton_buscar.addEventListener('click', function () {
     buscar(barra_busqueda.value);
 })
 seleccion.addEventListener('change', function () {
-    console.log(seleccion.value);
+    filtrar(seleccion.value);
 })
 
 
@@ -114,6 +115,23 @@ function buscar(texto) {
             } else {
                 card.hidden = false;
             }
+        }
+    }
+}
+
+function filtrar(categoria_id){
+    let cards = document.getElementsByClassName('card');
+    for(let i = 0; i < cards.length; i++){
+        cards[i].hidden = true;
+        if(categoria_id == 0){
+            cards[i].hidden = false;
+        }
+    }
+    let cat_libros = document.getElementsByClassName('categoria-id');
+    for(let j = 0; j < cat_libros.length; j++){
+        if(cat_libros[j].innerText == categoria_id){
+            let card = cat_libros[j].closest('.card');
+            card.hidden = false;
         }
     }
 }

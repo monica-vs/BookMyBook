@@ -3,16 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/BookMyBook/BookMyBook/resources/views/layouts/nav.blade.php</file>
-            <file>file:/C:/xampp/htdocs/BookMyBook/BookMyBook/resources/views/nuevolibro.blade.php</file>
-            <file>file:/C:/xampp/htdocs/BookMyBook/BookMyBook/routes/web.php</file>
             <file>file:/C:/xampp/htdocs/BookMyBook/BookMyBook/app/Http/Controllers/LibroController.php</file>
             <file>file:/C:/xampp/htdocs/BookMyBook/BookMyBook/public/js/explorar.js</file>
-            <file>file:/C:/xampp/htdocs/BookMyBook/BookMyBook/public/css/home.css</file>
-            <file>file:/C:/xampp/htdocs/BookMyBook/BookMyBook/resources/views/home.blade.php</file>
-            <file>file:/C:/xampp/htdocs/BookMyBook/BookMyBook/public/css/main.css</file>
-            <file>file:/C:/xampp/htdocs/BookMyBook/BookMyBook/public/css/explorar.css</file>
-            <file>file:/C:/xampp/htdocs/BookMyBook/BookMyBook/resources/views/perfil.blade.php</file>
+            <file>file:/C:/xampp/htdocs/BookMyBook/BookMyBook/app/Models/Carrito.php</file>
+            <file>file:/C:/xampp/htdocs/BookMyBook/BookMyBook/app/Models/Categoria.php</file>
+            <file>file:/C:/xampp/htdocs/BookMyBook/BookMyBook/public/css/libro.css</file>
             <file>file:/C:/xampp/htdocs/BookMyBook/BookMyBook/resources/views/explorar.blade.php</file>
             <file>file:/C:/xampp/htdocs/BookMyBook/BookMyBook/resources/views/libro.blade.php</file>
         </group>
