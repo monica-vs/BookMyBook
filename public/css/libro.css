@@ -42,7 +42,6 @@ and open the template in the editor.
 }
 
 #fondo-precio{
-    background-color:#a3efb6;
     width: 10rem;
     display: flex;
     flex-direction: row;
@@ -53,4 +52,16 @@ and open the template in the editor.
 
 a{
     text-decoration: none;
+}
+
+#comprar{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+}
+#btn-comprar {
+    margin-right: 2rem;
+    font-size: 1.2rem;
 }

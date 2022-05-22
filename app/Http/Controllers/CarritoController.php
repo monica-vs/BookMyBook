@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
 
-class UserController extends Controller
+class CarritoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +13,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $usuarios = User::all();
-        return response()->json($usuarios);
+        //
     }
 
     /**
@@ -47,9 +45,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $usuario = User::where('id','=',$id)->get();
-        //$nombre = $usuario->name;
-        return response()->json($usuario);
+        //
     }
 
     /**
@@ -72,11 +68,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $usuario = User::find($id);
-        $usuario->name = $request->nombre;
-        $usuario->email = $request->email;
-        $usuario->save();
-        return redirect()->route('perfil')->with('mensaje', 'Actualizado');
+        //
     }
 
     /**
