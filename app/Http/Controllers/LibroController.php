@@ -14,7 +14,7 @@ class LibroController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $libros = Libro::where('disponible','=','1')->get();
+        $libros = Libro::all();
         return response()->json($libros);
     }
 
@@ -85,9 +85,6 @@ class LibroController extends Controller {
      */
     public function destroy($id) {
         Libro::find($id)->delete();
-        return response()->json([
-                    'success' => 'Libro eliminado correctamente'
-        ]);
     }
 
 }
