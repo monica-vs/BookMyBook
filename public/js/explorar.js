@@ -60,8 +60,8 @@ function imprimir(datos) {
             button_info.addEventListener('click', function (e) {
                 window.location.href = "http://127.0.0.1:8000/libro/" + datos[i].id;
             })
-            
-            button_comprar.addEventListener('click', function(e){
+
+            button_comprar.addEventListener('click', function (e) {
                 comprar(datos[i].id);
             });
 
@@ -148,6 +148,30 @@ function filtrar(categoria_id) {
     }
 }
 
-function comprar(id){
+function comprar(id) {
     console.log(id);
+
+    let url = "http://127.0.0.1:8000/carrito";
+
+    //Obtención del token CSRF como autenticación
+    let token = document.querySelector('meta[name="csrf-token"]').content;
+    let param = new FormData();
+    param.append('token', token);
+    param.append('libro_id', id);
+
+    fetch(url, {
+        method: 'POST',
+        body: JSON.stringify({
+            libro_id: id,
+            usuario_id: user_id
+        }),
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': token
+        }
+    }).then(respuesta => respuesta.json())
+            .then((datos) => console.log(datos))
+            .catch(e => console.log(e.message));
+
+    window.location.href = '/micarrito';
 }

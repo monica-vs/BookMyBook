@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Carrito;
 
 class CarritoController extends Controller
 {
@@ -13,7 +14,8 @@ class CarritoController extends Controller
      */
     public function index()
     {
-        //
+        $carrito = Carrito::all();
+        return response()->json($carrito);
     }
 
     /**
@@ -34,7 +36,14 @@ class CarritoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $datos = request()->all();
+        $usuario_id = $datos['usuario_id'];
+        $libro_id = $datos['libro_id'];
+        $carrito_usuario = Carrito::whereRaw('usuario_id = ? and libro_id = ?', [$usuario_id, $libro_id])->get();
+        if(count($carrito_usuario) == 0){
+            Carrito::insert($datos);
+        }
+        return response()->json($request);
     }
 
     /**
@@ -45,7 +54,8 @@ class CarritoController extends Controller
      */
     public function show($id)
     {
-        //
+        $carrito_user = Carrito::where('usuario_id','=',$id)->get();
+        return response()->json($carrito_user);
     }
 
     /**

@@ -43,7 +43,7 @@
                     <button type="button" onclick="window.location ='{{ url("login") }}'" class="btn btn-light boton">Iniciar sesión</button>
                     <button type="button" onclick="window.location ='{{ url("register")}}'" class="btn btn-light boton">Registrarse</button>
                     @else
-                    <button type="button" onclick="window.location ='{{ url("carrito")}}'" class="btn btn-light boton"><i class="fa-solid fa-cart-shopping fa-lg"></i></button>
+                    <button type="button" onclick="window.location ='{{ url("micarrito")}}'" class="btn btn-light boton"><i class="fa-solid fa-cart-shopping fa-lg"></i></button>
                     <button type="button" onclick="window.location ='{{ url("mensajes")}}'" class="btn btn-light boton"><i class="fa-solid fa-message fa-lg"></i></button>
                     <button type="button" onclick="window.location ='{{ url("perfil")}}'" class="btn btn-light boton"><i class="fa-solid fa-user fa-lg"></i></button>
                     <button type="button" href="{{ route('logout') }}"
