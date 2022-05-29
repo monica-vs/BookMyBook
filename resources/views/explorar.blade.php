@@ -50,8 +50,7 @@ $user_id = Auth::user()->id;
 ?>
 <script>
     //Pasamos número de usuario autenticado al código JavaScript
-    let user_id = {!! json_encode($user_id) !!}
-    ;
+    let user_id = {!! json_encode($user_id) !!};
 </script>
 
 @push('head')

@@ -5,6 +5,8 @@ use App\Http\Controllers\LibroController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CarritoController;
+use App\Http\Controllers\PedidoController;
+use App\Http\Controllers\PedidoDetalleController;
 use App\Models\Libro;
 
 /*
@@ -63,6 +65,8 @@ Route::resource('libros', LibroController::class)->middleware('auth');
 Route::resource('categorias', CategoriaController::class)->middleware('auth');
 Route::resource('users', UserController::class);
 Route::resource('carrito', CarritoController::class)->middleware('auth');
+Route::resource('pedido', PedidoController::class)->middleware('auth');
+Route::resource('pedidodetalle', PedidoDetalleController::class)->middleware('auth');
 
 Auth::routes();
 

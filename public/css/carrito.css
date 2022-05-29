@@ -1,0 +1,25 @@
+#carrito-alerta{
+    margin: auto;
+    width: 50%;
+    text-align: center;
+}
+
+#cuenta-table-body a{
+    text-decoration: none;
+    color:#484848;
+}
+
+#cuenta-table-body a:hover{
+    color:#757575;
+}
+
+#d-precio{
+    text-align: center;
+    margin-top: 5rem;
+    padding-right: 2rem;
+}
+
+#precio{
+    font-weight: bold;
+    font-size: 1.1rem;
+}

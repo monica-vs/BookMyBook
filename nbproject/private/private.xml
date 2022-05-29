@@ -6,9 +6,14 @@
             <file>file:/C:/xampp/htdocs/BookMyBook/BookMyBook/app/Http/Controllers/CarritoController.php</file>
             <file>file:/C:/xampp/htdocs/BookMyBook/BookMyBook/routes/web.php</file>
             <file>file:/C:/xampp/htdocs/BookMyBook/BookMyBook/app/Http/Controllers/LibroController.php</file>
+            <file>file:/C:/xampp/htdocs/BookMyBook/BookMyBook/app/Http/Controllers/PedidoDetalleController.php</file>
             <file>file:/C:/xampp/htdocs/BookMyBook/BookMyBook/public/js/explorar.js</file>
             <file>file:/C:/xampp/htdocs/BookMyBook/BookMyBook/public/js/nuevolibro.js</file>
+            <file>file:/C:/xampp/htdocs/BookMyBook/BookMyBook/app/Http/Controllers/PedidoController.php</file>
+            <file>file:/C:/xampp/htdocs/BookMyBook/BookMyBook/public/js/carrito.js</file>
+            <file>file:/C:/xampp/htdocs/BookMyBook/BookMyBook/resources/views/perfil.blade.php</file>
             <file>file:/C:/xampp/htdocs/BookMyBook/BookMyBook/resources/views/explorar.blade.php</file>
+            <file>file:/C:/xampp/htdocs/BookMyBook/BookMyBook/resources/views/carrito.blade.php</file>
         </group>
     </open-files>
 </project-private>

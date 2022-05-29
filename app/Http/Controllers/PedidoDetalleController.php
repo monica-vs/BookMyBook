@@ -3,19 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use App\Models\Libro;
+use App\Models\PedidoDetalle;
 
-class LibroController extends Controller {
-
+class PedidoDetalleController extends Controller
+{
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
-        $libros = Libro::all();
-        return response()->json($libros);
+    public function index()
+    {
+        
     }
 
     /**
@@ -23,7 +22,8 @@ class LibroController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function create() {
+    public function create()
+    {
         //
     }
 
@@ -33,17 +33,11 @@ class LibroController extends Controller {
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request) {
-        $datos = request()->except("_token");
-        $usuario_id = Auth::user()->id;
-
-        if ($request->hasFile('imagen')) {
-            $datos['imagen'] = $request->file('imagen')->store('uploads', 'public');
-        }
-
-        $datos2 = array_merge($datos, ['usuario_id' => $usuario_id]);
-        Libro::insert($datos2);
-        return view('nuevolibro');
+    public function store(Request $request)
+    {
+        $datos = request()->all();
+        PedidoDetalle::insert($datos);
+        return response()->json($datos);
     }
 
     /**
@@ -52,9 +46,11 @@ class LibroController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id) {
-        $libro = Libro::find($id);
-        return response()->json($libro);
+    public function show($id)
+    {
+        //$id se refiere a id de libro
+        $pedidodetalle = PedidoDetalle::find($id);
+        return response()->json($pedidodetalle);
     }
 
     /**
@@ -63,7 +59,8 @@ class LibroController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id) {
+    public function edit($id)
+    {
         //
     }
 
@@ -74,7 +71,8 @@ class LibroController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id) {
+    public function update(Request $request, $id)
+    {
         //
     }
 
@@ -84,8 +82,8 @@ class LibroController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id) {
-        Libro::find($id)->delete();
+    public function destroy($id)
+    {
+        //
     }
-
 }

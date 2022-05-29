@@ -89,6 +89,6 @@ class CarritoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Carrito::find($id)->delete();
     }
 }

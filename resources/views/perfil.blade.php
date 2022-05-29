@@ -45,29 +45,6 @@
     </div>
     <br>
     <div class="card w-50 mx-auto">
-        <div class="card-header">Cambiar contraseña</div>
-        <div class="card-body">
-            <form class="needs-validation" action="{{ url('/password')}}" method="post">
-                @csrf
-                <fieldset id="field2" disabled="true">
-                <div class="mb-3">
-                    <label for="contrasena" class="form-label">Nueva contraseña</label>
-                    <input type="text" class="form-control" name="contrasena" required>
-                </div>
-                <div class="mb-3">
-                    <label for="nuevacontrasena" class="form-label">Confirmar contraseña</label>
-                    <input type="text" class="form-control" name="nuevacontrasena" required>
-                </div>
-                </fieldset>
-                <div class="botones">
-                    <input type="submit" class="btn btn-success" value="Guardar" disabled="true" hidden="hidden" id="guardar2" />
-                </div>
-            </form>
-            <button class="btn btn-secondary" id="editar2">Editar</button>
-        </div>
-    </div>
-    <br>
-    <div class="card w-50 mx-auto">
         <div class="card-header">Información adicional</div>
         <div class="card-body">
             @if (empty($userinfo))
