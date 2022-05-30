@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\UserInfo;
 
 class UserInfoController extends Controller
 {
@@ -34,7 +35,9 @@ class UserInfoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $datos = request()->except("_token");
+        UserInfo::insert($datos);
+        return view('perfil');
     }
 
     /**
@@ -68,7 +71,12 @@ class UserInfoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $datos = request()->except("_token");
+        $detalle = UserInfo::find($id);
+        $detalle->direccion = $datos['direccion'];
+        $detalle->telefono = $datos['telefono'];
+        $detalle->save();
+        return view('perfil');
     }
 
     /**

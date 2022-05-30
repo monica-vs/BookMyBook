@@ -89,6 +89,8 @@ class CarritoController extends Controller
      */
     public function destroy($id)
     {
-        Carrito::find($id)->delete();
+        //Se recibe id de usuario
+        $res = Carrito::where('usuario_id','=', $id)->delete();
+        return response()->json($res);
     }
 }

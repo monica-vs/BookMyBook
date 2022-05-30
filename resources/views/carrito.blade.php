@@ -46,11 +46,18 @@ $userinfo = UserInfo::find($user_id);
                 Comprueba que tus datos son correctos.
             </div>
             <div class="card w-50 mb-3">
+                @if($userinfo == null)
+                <div class="card-body">
+                    Por favor, añade una dirección desde <a href="/perfil">tu perfil</a> antes de continuar.
+                </div>
+                @else
                 <div class="card-body">
                     Dirección: {{$userinfo->direccion}} <br>
                     Teléfono: {{$userinfo->telefono}}
                 </div>
+                @endif
             </div>
+            @if($userinfo != null)
             <div class="my-2">
                 Añade un método de pago.
             </div>
@@ -78,6 +85,7 @@ $userinfo = UserInfo::find($user_id);
             <div>
                 <button class="btn btn-success" id="btn-pago">Realizar pago</button>
             </div>
+            @endif
         </div>
     </div>
 </div>

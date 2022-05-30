@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\PedidoDetalle;
+use App\Models\Libro;
 
 class PedidoDetalleController extends Controller
 {
@@ -37,6 +38,9 @@ class PedidoDetalleController extends Controller
     {
         $datos = request()->all();
         PedidoDetalle::insert($datos);
+        $libro = Libro::find($datos['libro_id']);
+        $libro->disponible = false;
+        $libro->save();
         return response()->json($datos);
     }
 

@@ -3,17 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/BookMyBook/BookMyBook/app/Http/Controllers/CarritoController.php</file>
             <file>file:/C:/xampp/htdocs/BookMyBook/BookMyBook/routes/web.php</file>
+            <file>file:/C:/xampp/htdocs/BookMyBook/BookMyBook/app/Http/Controllers/UserInfoController.php</file>
             <file>file:/C:/xampp/htdocs/BookMyBook/BookMyBook/app/Http/Controllers/LibroController.php</file>
-            <file>file:/C:/xampp/htdocs/BookMyBook/BookMyBook/app/Http/Controllers/PedidoDetalleController.php</file>
-            <file>file:/C:/xampp/htdocs/BookMyBook/BookMyBook/public/js/explorar.js</file>
+            <file>file:/C:/xampp/htdocs/BookMyBook/BookMyBook/resources/views/compraventa.blade.php</file>
+            <file>file:/C:/xampp/htdocs/BookMyBook/BookMyBook/public/js/perfil.js</file>
+            <file>file:/C:/xampp/htdocs/BookMyBook/BookMyBook/public/js/compraventa.js</file>
             <file>file:/C:/xampp/htdocs/BookMyBook/BookMyBook/public/js/nuevolibro.js</file>
             <file>file:/C:/xampp/htdocs/BookMyBook/BookMyBook/app/Http/Controllers/PedidoController.php</file>
-            <file>file:/C:/xampp/htdocs/BookMyBook/BookMyBook/public/js/carrito.js</file>
+            <file>file:/C:/xampp/htdocs/BookMyBook/BookMyBook/resources/views/home.blade.php</file>
             <file>file:/C:/xampp/htdocs/BookMyBook/BookMyBook/resources/views/perfil.blade.php</file>
-            <file>file:/C:/xampp/htdocs/BookMyBook/BookMyBook/resources/views/explorar.blade.php</file>
-            <file>file:/C:/xampp/htdocs/BookMyBook/BookMyBook/resources/views/carrito.blade.php</file>
+            <file>file:/C:/xampp/htdocs/BookMyBook/BookMyBook/public/js/carrito.js</file>
         </group>
     </open-files>
 </project-private>

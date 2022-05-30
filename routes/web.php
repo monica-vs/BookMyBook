@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LibroController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserInfoController;
 use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\PedidoDetalleController;
@@ -56,6 +57,10 @@ Route::get('/mensajes', function () {
     return view('mensajes');
 })->middleware('auth');
 
+Route::get('/compras-y-ventas', function () {
+    return view('compraventa');
+})->middleware('auth');
+
 Route::get('/libro/{n}', function ($n) {
     $libro = Libro::where('id', '=', $n)->get();
     return view('libro')->with(['libro'=>$libro]);
@@ -64,6 +69,7 @@ Route::get('/libro/{n}', function ($n) {
 Route::resource('libros', LibroController::class)->middleware('auth');
 Route::resource('categorias', CategoriaController::class)->middleware('auth');
 Route::resource('users', UserController::class);
+Route::resource('userinfo', UserInfoController::class);
 Route::resource('carrito', CarritoController::class)->middleware('auth');
 Route::resource('pedido', PedidoController::class)->middleware('auth');
 Route::resource('pedidodetalle', PedidoDetalleController::class)->middleware('auth');

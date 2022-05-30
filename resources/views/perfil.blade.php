@@ -49,9 +49,10 @@
         <div class="card-body">
             @if (empty($userinfo))
             <div class="alert alert-warning" role="alert"><b>ATENCIÓN</b><br>Aún no has completado tu información personal.</div>
-            <form class="needs-validation" action="" method="post">
+            <form class="needs-validation" action="{{ url('/userinfo')}}" method="post">
                 @csrf
-                <fieldset id="field3" disabled="true">
+                <fieldset id="field2" disabled="true">
+                    <input type="text" class="form-control" name="id" value="{{ $user->id }}" required hidden="hidden">
                 <div class="mb-3">
                     <label for="direccion" class="form-label">Dirección</label>
                     <input type="text" placeholder="Calle, número, piso, puerta, localidad..." class="form-control" name="direccion" required>
@@ -62,14 +63,14 @@
                 </div>
                 </fieldset>
                 <div class="botones">
-                    <input type="submit" class="btn btn-success" value="Guardar" disabled="true" hidden="hidden" id="guardar3" />
+                    <input type="submit" class="btn btn-success" value="Guardar" disabled="true" hidden="hidden" id="guardar2" />
                 </div>
             </form>
             @else
-            <form class="needs-validation" action="" method="post">
+            <form class="needs-validation" action="{{ url('/userinfo', $user->id)}}" method="post">
                 @csrf
                 @method('PUT')
-                <fieldset id="field3" disabled="true">
+                <fieldset id="field2" disabled="true">
                 <div class="mb-3">
                     <label for="direccion" class="form-label">Dirección</label>
                     <input type="text" value='{{$userinfo->direccion}}' class="form-control" name="direccion" required>
@@ -80,11 +81,11 @@
                 </div>
                 </fieldset>
                 <div class="botones">
-                    <input type="submit" class="btn btn-success" value="Guardar" disabled="true" hidden="hidden" id="guardar3" />
+                    <input type="submit" class="btn btn-success" value="Guardar" disabled="true" hidden="hidden" id="guardar2" />
                 </div>
             </form>
             @endif
-            <button class="btn btn-secondary" id="editar3">Editar</button>
+            <button class="btn btn-secondary" id="editar2">Editar</button>
         </div>
     </div>
 </div>

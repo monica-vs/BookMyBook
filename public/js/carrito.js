@@ -1,5 +1,6 @@
 //Consulta para obtener el carrito del usuario. Obtención de datos en JSON con método GET
 let url = "http://127.0.0.1:8000/carrito/" + user_id;
+let total = 0;
 fetch(url)
         .then((respuesta) => respuesta.json())
         .then((datos) => imprimir(datos))
@@ -10,9 +11,9 @@ btn_pago.addEventListener('click', function () {
     pagar();
 })
 
+
 function imprimir(datos) {
     console.log(datos);
-    let total = 0;
     let cuenta = document.getElementById('cuenta');
     let sin_cuenta = document.getElementById('sin-cuenta');
     if (datos.length == 0) {
@@ -104,33 +105,34 @@ async function pagar() {
 
     //Almacenaremos aquí la información del pedido creado en la tabla de pedidos, nos interesa especialemente el id generado.
     let pedido = await hacerPedido();
-
-    let url = "http://127.0.0.1:8000/pedidodetalle";
-
+    
+    //Añadimos los libros a la tabla de Pedidos_Detalle
+    let detallesPedido = await anadirDetallesPedido(pedido);
+    
+    
+    let url = "http://127.0.0.1:8000/carrito/" + user_id;
+    
     //Obtención del token CSRF como autenticación
     let token = document.querySelector('meta[name="csrf-token"]').content;
+    
+    let xhr = new XMLHttpRequest();
+    xhr.open("DELETE", url);
+    
+    
+    xhr.setRequestHeader("Accept", "*/*");
+    xhr.setRequestHeader('X-CSRF-TOKEN', token);
+    
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+            console.log(xhr.status);
+            console.log(xhr.responseText);
+        }
+    };
 
-    let libros_carrito = document.getElementsByClassName('idproducto');
-    for (let i = 0; i < libros_carrito.length; i++) {
-        let libro = libros_carrito[i].innerText;
-
-        fetch(url, {
-            method: 'POST',
-            body: JSON.stringify({
-                pedido_id: pedido.id,
-                libro_id: libro
-            }),
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': token
-            }
-        }).then(respuesta => respuesta.json())
-                .then((datos) => console.log(datos))
-                .catch((e) => console.log(e.message));
-    }
-
-    console.log(libros_carrito);
-
+    xhr.send();
+    
+    console.log('Pedido realizado correctamente');
+    window.location.href = '/compras-y-ventas';
 }
 
 async function hacerPedido() {
@@ -139,13 +141,12 @@ async function hacerPedido() {
 
     //Obtención del token CSRF como autenticación
     let token = document.querySelector('meta[name="csrf-token"]').content;
-    let param = new FormData();
-    param.append('token', token);
-
+    
     return fetch(url, {
         method: 'POST',
         body: JSON.stringify({
-            usuario_id: user_id
+            usuario_id: user_id,
+            total: total
         }),
         headers: {
             'Content-Type': 'application/json',
@@ -156,3 +157,34 @@ async function hacerPedido() {
                 return datos
             });
 }
+
+async function anadirDetallesPedido(pedido){
+    console.log('Añadiendo detalles del pedido...');
+    let url = "http://127.0.0.1:8000/pedidodetalle";
+    
+    let peticion;
+    //Obtención del token CSRF como autenticación
+    let token = document.querySelector('meta[name="csrf-token"]').content;
+
+    let libros_carrito = document.getElementsByClassName('idproducto');
+    for (let i = 0; i < libros_carrito.length; i++) {
+        let libro = libros_carrito[i].innerText;
+
+        peticion = fetch(url, {
+            method: 'POST',
+            body: JSON.stringify({
+                pedido_id: pedido.id,
+                libro_id: libro
+            }),
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': token
+            }
+        }).then(respuesta => respuesta.json())
+                .then((datos) => {
+                return datos
+            });
+    }
+    return peticion;
+}
+

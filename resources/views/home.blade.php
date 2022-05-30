@@ -47,7 +47,7 @@
                         <div class="h-50 d-flex align-items-center justify-content-center py-4">
                             Revisa tu historial de compras y ventas.
                         </div>
-                        <button type="button" class="btn btn-dark boton2 mt-auto mx-auto">¡Llévame!</button>
+                        <button type="button" onclick="window.location ='{{ url("compras-y-ventas")}}'" class="btn btn-dark boton2 mt-auto mx-auto">¡Llévame!</button>
                     </div>
                 </div>
             </div>

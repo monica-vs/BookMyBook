@@ -12,11 +12,11 @@ and open the template in the editor.
     display: flex;
     flex-direction: row;
     background-color: white;
-    border-radius: 10rem;
+    border-radius: 1rem;
     margin-top: 1rem;
     margin-bottom: 3rem;
     align-items: center;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 3px 8px;
 }
 
 .home-cabecera h3 {
