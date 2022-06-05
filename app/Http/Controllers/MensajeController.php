@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Mensaje;
 
 class MensajeController extends Controller
 {
@@ -34,7 +35,9 @@ class MensajeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $datos = request()->except("_token");
+        Mensaje::insert($datos);
+        return view('mensajes');
     }
 
     /**

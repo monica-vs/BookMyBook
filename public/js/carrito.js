@@ -11,6 +11,7 @@ btn_pago.addEventListener('click', function () {
     pagar();
 })
 
+let ids_carrito = [];
 
 function imprimir(datos) {
     console.log(datos);
@@ -29,7 +30,6 @@ function imprimir(datos) {
             xhReq.open("GET", url2, false);
             xhReq.send(null);
             let libro = JSON.parse(xhReq.responseText);
-            console.log(libro);
 
             let fila = document.createElement('tr');
             let numero = document.createElement('th');
@@ -51,7 +51,7 @@ function imprimir(datos) {
             boton_eliminar.addEventListener('click', function (e) {
                 eliminar_item(datos[i].id);
             });
-
+            ids_carrito.push(datos[i].id);
 
             fila.append(numero);
             fila.append(idproducto);
@@ -69,11 +69,10 @@ function imprimir(datos) {
 
         let precio = document.getElementById('precio');
         precio.innerText = "Total a pagar: " + total.toFixed(2) + "€";
-        console.log(total);
     }
 }
 
-function eliminar_item(id) {
+async function eliminar_item(id) {
     let url = "http://127.0.0.1:8000/carrito/" + id;
 
     //Obtención del token CSRF como autenticación
@@ -83,7 +82,6 @@ function eliminar_item(id) {
     let xhr = new XMLHttpRequest();
     xhr.open("DELETE", url);
 
-
     xhr.setRequestHeader("Accept", "*/*");
     xhr.setRequestHeader('X-CSRF-TOKEN', token);
 
@@ -91,12 +89,13 @@ function eliminar_item(id) {
         if (xhr.readyState === 4) {
             console.log(xhr.status);
             console.log(xhr.responseText);
+            return xhr.status;
         }
     };
-
+    
     xhr.send();
-
-    window.location.href = '/micarrito';
+    
+    window.location = "/micarrito";
 }
 
 async function pagar() {
@@ -112,27 +111,15 @@ async function pagar() {
     
     let url = "http://127.0.0.1:8000/carrito/" + user_id;
     
-    //Obtención del token CSRF como autenticación
-    let token = document.querySelector('meta[name="csrf-token"]').content;
-    
-    let xhr = new XMLHttpRequest();
-    xhr.open("DELETE", url);
-    
-    
-    xhr.setRequestHeader("Accept", "*/*");
-    xhr.setRequestHeader('X-CSRF-TOKEN', token);
-    
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4) {
-            console.log(xhr.status);
-            console.log(xhr.responseText);
-        }
-    };
-
-    xhr.send();
-    
     console.log('Pedido realizado correctamente');
-    window.location.href = '/compras-y-ventas';
+    
+    //Borrar elementos del carrito
+    
+    for(let i = 0; i < ids_carrito.length; i++){
+        let borrado = await eliminar_item(ids_carrito[i]);
+        console.log(borrado);
+    }
+    window.location = "/compras-y-ventas";
 }
 
 async function hacerPedido() {

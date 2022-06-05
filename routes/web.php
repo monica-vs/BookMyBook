@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LibroController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\MensajeController;
 use App\Http\Controllers\UserInfoController;
 use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\PedidoController;
@@ -73,6 +74,7 @@ Route::resource('userinfo', UserInfoController::class);
 Route::resource('carrito', CarritoController::class)->middleware('auth');
 Route::resource('pedido', PedidoController::class)->middleware('auth');
 Route::resource('pedidodetalle', PedidoDetalleController::class)->middleware('auth');
+Route::resource('mensaje', MensajeController::class)->middleware('auth');
 
 Auth::routes();
 

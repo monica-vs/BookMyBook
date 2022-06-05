@@ -27,7 +27,7 @@
             <div id="f-libro" class="card mx-auto w-100">
                 <div class="card-header">Datos del libro</div>
                 <div class="card-body">
-                    <form class="needs-validation" action="{{ url('/libros')}}" method="post">
+                    <form class="needs-validation" action="{{ url('/libros')}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
                             <label for="ISBN" class="form-label">ISBN</label>
@@ -43,11 +43,14 @@
                         </div>
                         <div class="mb-3">
                             <label for="precio" class="form-label">Precio</label>
-                            <input type="text" class="form-control w-50" name="precio" required>
+                            <div class="input-group mb-3 w-25">
+                                <input type="text" placeholder="Ej. 10.75" class="form-control w-25" name="precio" required>
+                            <span class="input-group-text" id="eur-addon">€</span>
+                            </div>
                         </div>
                         <div class="mb-3">
-                            <label for="imagen" class="form-label">URL de imagen</label>
-                            <input type="text" class="form-control" name="imagen" required>
+                            <label for="imagen" class="form-label">Imagen</label>
+                            <input type="file" class="form-control" name="imagen" required>
                         </div>
                         <div class="col-md-5">
                             <label class="form-label">Categoría</label>

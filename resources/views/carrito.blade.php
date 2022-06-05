@@ -30,6 +30,7 @@ $userinfo = UserInfo::find($user_id);
         <div id="d-precio">
             <p id="precio"></p>
             <button class="btn btn-success" data-bs-toggle="offcanvas" data-bs-target="#offcanvasPedido">Realizar pedido</button>
+            <button class="btn btn-secondary">Seguir comprando</button>
         </div>
     </div>
     <div id="sin-cuenta" hidden="hidden">

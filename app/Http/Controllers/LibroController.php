@@ -36,7 +36,7 @@ class LibroController extends Controller {
     public function store(Request $request) {
         $datos = request()->except("_token");
         $usuario_id = Auth::user()->id;
-
+        
         if ($request->hasFile('imagen')) {
             $datos['imagen'] = $request->file('imagen')->store('uploads', 'public');
         }

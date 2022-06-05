@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\PedidoDetalle;
+use App\Models\Carrito;
 use App\Models\Libro;
 
 class PedidoDetalleController extends Controller

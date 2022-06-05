@@ -3,11 +3,14 @@
 @section('content')
 
 <?php
+
 use App\Models\Pedido;
+use App\Models\PedidoDetalle;
+use App\Models\Libro;
 
 $user = Auth::user();
-$pedidos = Pedido::where('usuario_id','=',$user->id)->get();
-
+$pedidos = Pedido::where('usuario_id', '=', $user->id)->get();
+$librosvendidos = Libro::whereRaw('usuario_id = ? and disponible = ?', [$user->id, 0])->get();
 ?>
 
 <div class="container">
@@ -74,9 +77,7 @@ $pedidos = Pedido::where('usuario_id','=',$user->id)->get();
                                         <submit type="button" class="btn btn-success">Recibido</submit>
                                     </form>
                                     @elseif($pedido['recibido'] == 1)
-                                        Sí
-                                    @else
-                                        
+                                    Sí
                                     @endif
                                 </td>
                             </tr>
@@ -86,18 +87,51 @@ $pedidos = Pedido::where('usuario_id','=',$user->id)->get();
                 </div>
 
                 <div id="l-ventas" class="container" hidden="hidden">
-                    <div class="accordion accordion-flush" id="accordionFlushExample">
+                    <div class="accordion accordion-flush" id="accordion-ventas">
+                        @foreach($librosvendidos as $libro)
                         <div class="accordion-item">
-                            <h2 class="accordion-header" id="flush-headingOne">
+                            <h2 class="accordion-header" id="flush-heading{{$libro['id']}}">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" 
-                                        data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                                    Pedido #
+                                        data-bs-target="#flush-collapse{{$libro['id']}}" aria-expanded="false" aria-controls="flush-collapse{{$libro['id']}}">
+                                    <i class="fa-solid fa-book"></i> &nbsp; {{$libro['titulo']}}
                                 </button>
                             </h2>
-                            <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                                <div class="accordion-body">Info</div>
+                            <div id="flush-collapse{{$libro['id']}}" class="accordion-collapse collapse" aria-labelledby="flush-heading{{$libro['id']}}" data-bs-parent="#accordion-ventas">
+                                <div class="accordion-body">
+                                    <?php
+                                    $p = PedidoDetalle::where('libro_id', '=', $libro['id'])->get();
+                                    $pedido_libro = Pedido::find($p[0]->pedido_id);
+                                    ?>
+                                    <h5>Pedido #{{$pedido_libro->id}}</h5>
+
+                                    <div class="card">
+                                        <div class="card-body">
+                                            Pedido realizado el día {{date('d/m/Y', strtotime($pedido_libro->fecha));}} a las {{date('H:i', strtotime($pedido_libro->fecha));}} <br><br>
+                                            @if($pedido_libro->enviado == 0)
+                                            <div class="alert alert-warning" role="alert">
+                                                El libro 
+                                            </div>
+                                            <br>
+                                            <div class="input-group mb-3">
+                                                <input type="text" name='num_envio' id='input-envio{{$pedido_libro->id}}' class="form-control" placeholder="Añadir aquí un número de envío" aria-describedby="envio{{$pedido_libro->id}}" oninput="comprobarInput({{$pedido_libro->id}})" required>
+                                                <button class="btn btn-outline-secondary" type="button" id="btn-envio{{$pedido_libro->id}}" onclick="anadirNumeroEnvio({{$pedido_libro->id}})">Aceptar</button>
+                                            </div>
+                                            <p class="error-message" id="error{{$pedido_libro->id}}" hidden="hidden">
+                                                El campo no puede estar vacío.
+                                            </p>
+                                            @else
+                                            <h5><span class="badge bg-success">Enviado</span></h5>
+                                            <i class="fa-solid fa-paper-plane"></i>&nbsp;Número de envío: {{$libro_pedido->num_envio}}
+                                            @endif
+                                            @if($pedido_libro->recibido == 1)
+                                            <h5><span class="badge bg-success">Recibido</span></h5>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                        @endforeach
                     </div>
                 </div>
             </div>

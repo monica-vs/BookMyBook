@@ -68,11 +68,13 @@ function imprimir(datos) {
             card_title.innerText = datos[i].titulo;
             card_text.innerHTML = "<span class='isbn'><b>ISBN: </b>" + datos[i].isbn + "</span><br>" + "<span class='autor'><b>Autor: </b>" + datos[i].autor + "</span><br>" + "<span class='categoria'><b>Categoria: </b>" + categoria + "</span><span class='categoria-id' hidden='hidden'>" + datos[i].categoria + "</span><br>" + "<span class='precio'><div class='precio'" + datos[i].precio + "</span></div>";
             precio.innerText = datos[i].precio + '€';
-
+            
+            
+            
             if (datos[i].imagen == null) {
-                card_img.src = 'https://img.freepik.com/free-vector/blank-book-cover-white-vector-illustration_1284-41903.jpg?t=st=1652052153~exp=1652052753~hmac=164eebdee34e2f8e4bccff592e98e9673cd38ee380948fc667588434c374ba6b&w=740';
+                card_img.src = '/img/no-image.png';
             } else {
-                card_img.src = datos[i].imagen;
+                card_img.src = '/storage/' + datos[i].imagen;
             }
 
 
@@ -155,9 +157,6 @@ function comprar(id) {
 
     //Obtención del token CSRF como autenticación
     let token = document.querySelector('meta[name="csrf-token"]').content;
-    let param = new FormData();
-    param.append('token', token);
-    param.append('libro_id', id);
 
     fetch(url, {
         method: 'POST',
