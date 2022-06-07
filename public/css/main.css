@@ -14,7 +14,7 @@ nav {
 }
 .navegacion {
     background-color: #283845;
-    
+
 }
 
 .navbar-brand {
@@ -39,15 +39,15 @@ nav {
     color: white;
     //text-shadow:1px 0 0 black,0 1px 0 black,-1px 0 0 black,0 -1px 0 black;
     text-shadow: -1px 1px 2px #000,
-				  1px 1px 2px #000,
-				  1px -1px 0 #000,
-				  -1px -1px 0 #000;
+        1px 1px 2px #000,
+        1px -1px 0 #000,
+        -1px -1px 0 #000;
     font-weight: 600;
     font-size: 3rem;
 }
 
 .texto-bienvenida {
-    
+
     padding: 2rem;
     height: 10rem;
     width: 130rem;
@@ -77,3 +77,73 @@ i {
     color: #283845;
 }
 
+.tarjetas{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.tarjetas .card{
+    margin: 1rem;
+    padding-top: 1rem;
+}
+
+.tarjeta-img{
+    width: 100px;
+    height: auto;
+    margin: auto;
+}
+
+.tarjeta-title{
+    font-weight: bold;
+}
+
+.c-bienvenida{
+    height: 45vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    padding-right: 10rem;
+    background: rgb(0,0,0);
+    background: linear-gradient(90deg, rgba(0,0,0,0) 20%, rgba(255,255,255,0.7) 49%, rgba(255,255,255,0.6839110644257703) 80%);
+    border-right: 10px solid white;
+    margin-bottom: 2rem;
+}
+.bienvenida-titulo{
+    font-family: 'Major Mono Display', monospace !important;
+    font-size: 4rem;
+}
+
+.bienvenida-subtitulo{
+    font-size: 1.1rem;
+}
+
+.acciones{
+    height: 10rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.acciones p{
+    background-color: white;
+    padding: 1rem;
+    width: 40vw;
+    text-align: center;
+    border-radius: 5rem;
+}
+
+.acciones a{
+    text-decoration: none;
+}
+
+footer{
+    text-align: center;
+    color:#a8a8a8;
+    padding: 0.5rem;
+}

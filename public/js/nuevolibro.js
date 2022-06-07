@@ -42,7 +42,7 @@ function imprimir(datos) {
     let cTable = document.getElementById('c-table');
     console.log(cTable);
     for (let i = 0; i < datos.length; i++) {
-        if (datos[i].usuario_id == user_id) {
+        if (datos[i].usuario_id == user_id && datos[i].disponible == 1) {
             let libro = datos[i];
             mislibros.push(libro);
         }

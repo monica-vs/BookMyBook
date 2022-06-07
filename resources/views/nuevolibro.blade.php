@@ -50,7 +50,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="imagen" class="form-label">Imagen</label>
-                            <input type="file" class="form-control" name="imagen" required>
+                            <input type="file" class="form-control" name="imagen">
                         </div>
                         <div class="col-md-5">
                             <label class="form-label">Categoría</label>

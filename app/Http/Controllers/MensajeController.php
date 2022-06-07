@@ -69,9 +69,14 @@ class MensajeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id)
     {
-        //
+        $mensaje = Mensaje::find($id);
+        //Timestamps debe actualizarse a false para poder realizar la actualización sin errores
+        $mensaje->timestamps = false;
+        $mensaje->leido = 1;
+        $mensaje->save();
+        return response()->json("Mensaje actualizado");
     }
 
     /**

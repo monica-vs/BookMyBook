@@ -4,17 +4,48 @@
 <?php
 
 use App\Models\UserInfo;
+use App\Models\Libro;
+use App\Models\Carrito;
 
 $user_id = Auth::user()->id;
 $userinfo = UserInfo::find($user_id);
+
+//Obtenemos los items del carrito del usuario
+$carrito = Carrito::where('usuario_id', '=', $user_id)->get();
+
+//Por cada vendedor se realizará un pedido, así que comprobamos cuántos vendedores hay en el carrito
+$vendedores = [];
+
+foreach ($carrito as $c) {
+    $libro = Libro::find($c->libro_id);
+    if (!in_array($libro->usuario_id, $vendedores)) {
+        $vendedores[] = $libro->usuario_id;
+    }
+}
+
+//Variable que almacena el número de subpedidos
+$n_pedido = 0;
+
+//Variable que almacena el precio total del pedido completo
+$total_pedido = 0;
+
+//Variable que almacena subtotales
+$subtotal = 0;
+
+//Array de subtotales
+$subtotales = [];
 ?>
 <div class="container">
     <h1>Carrito</h1>
-    <div id="cuenta" hidden="hidden">
+    <br><br>
+    @if($carrito != null)
+    <div>
+        @foreach($vendedores as $vendedor)
+        <?php $n_pedido++; $subtotal = 0;?>
+        <h3>Pedido {{$n_pedido}}</h3>
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th scope="col">#</th>
                     <th scope="col">ID de producto</th>
                     <th scope="col">Título</th>
                     <th scope="col">Autor</th>
@@ -23,20 +54,41 @@ $userinfo = UserInfo::find($user_id);
                 </tr>
             </thead>
             <tbody id="cuenta-table-body">
-
+                @foreach($carrito as $item)
+                <?php $libro = Libro::find($item->libro_id);?>
+                @if($libro->usuario_id == $vendedor)
+                <?php $subtotal += $libro->precio ?>
+                <tr>
+                    <td><span class="idproducto{{$n_pedido}}">{{$libro->id}}</span></td>
+                    <td><a href="/libro/{{$libro->id}}">{{$libro->titulo}}</a></td>
+                    <td>{{$libro->autor}}</td>
+                    <td>{{$libro->precio}}€</td>
+                    <td><button type="button" class="btn btn-danger" onclick="eliminar_item({{$item->id}})">Eliminar</button></td>
+                </tr>
+                @endif
+                @endforeach
             </tbody>
         </table>
-
+        <p class="text-end"><b>Subtotal: {{number_format($subtotal, 2)}}€</b></p>
+        <br><br>
+        <?php $total_pedido += $subtotal; $subtotales[] = $subtotal;?>
+        @endforeach
+        @if($n_pedido > 1)
+        <p>* Este pedido incluye {{$n_pedido}} subpedidos, cada uno gestionado por un vendedor distinto.</p>
+        @endif
+        <p class="text-center fs-4 mt-5"><b>Total a pagar: {{number_format($total_pedido,2)}}€</b></p>
         <div id="d-precio">
             <p id="precio"></p>
-            <button class="btn btn-success" data-bs-toggle="offcanvas" data-bs-target="#offcanvasPedido">Realizar pedido</button>
+            <button class="btn btn-success" data-bs-toggle="offcanvas" data-bs-target="#offcanvasPedido">Realizar pedido/s</button>
             <button class="btn btn-secondary">Seguir comprando</button>
         </div>
     </div>
+
+    @else
     <div id="sin-cuenta" hidden="hidden">
         <div id="carrito-alerta" class="alert alert-secondary" role="alert">Tu carrito está vacío. Añade algún libro para proceder a realizar un pedido.</div>
     </div>
-
+    @endif
     <div class="offcanvas offcanvas-bottom h-75 w-50 m-auto" tabindex="-1" id="offcanvasPedido" aria-labelledby="offcanvasPedidoLabel">
         <div class="offcanvas-header">
             <h5 class="offcanvas-title" id="offcanvasPedidoLabel">Realizar pedido</h5>
@@ -84,7 +136,7 @@ $userinfo = UserInfo::find($user_id);
                 </div>
             </div>
             <div>
-                <button class="btn btn-success" id="btn-pago">Realizar pago</button>
+                <button class="btn btn-success" id="btn-pago" onclick="pagar()">Realizar pago</button>
             </div>
             @endif
         </div>

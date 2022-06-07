@@ -28,7 +28,7 @@ and open the template in the editor.
     height: 12rem;
 }
 
-.acciones {
+.c-acciones {
     margin-top: 2rem;
     margin-bottom: 2rem;
 }
@@ -40,3 +40,4 @@ h5 {
 .boton2:hover {
     background-color: gray;
 }
+

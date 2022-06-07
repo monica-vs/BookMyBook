@@ -1,0 +1,42 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 5 jun. 2022, 13:03:30
+    Author     : monic
+*/
+
+.cuerpo-mensaje{
+    background-color: #e1ebf7;
+    border-radius: 1rem;
+    padding: 1rem;
+}
+
+.texto-mensaje{
+    margin: 1rem;
+    font-size: 1.1rem;
+}
+
+.fecha-mensaje{
+    text-align: right;
+    color: gray;
+}
+
+.respuesta{
+    padding: 2rem;
+}
+
+.respuesta textarea {
+    width: 25vw;
+}
+
+.marcar-leido{
+    text-align: right;
+    padding-right: 1rem;
+}
+
+.marcar-leido button{
+    font-size: 0.8rem;
+}

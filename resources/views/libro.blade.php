@@ -5,11 +5,16 @@
 <div class="container">
 
     <?php
+    use App\Models\Categoria;
+    use App\Models\User;
+    
     $lib = json_decode($libro);
     $libro = $lib[0];
     if ($libro->imagen == null) {
         $libro->imagen = asset('img/no-image.png');
     }
+    $categoria = Categoria::find($libro->categoria)->titulo;
+    $dueno_libro = User::find($libro->usuario_id)->name;
     ?>
 
     <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
@@ -39,7 +44,7 @@
             <div id="datos">
                 <p><b>ISBN:</b> {{$libro->isbn}}</p>
                 <p><b>Autor:</b> {{$libro->autor}}</p>
-                <p><b>Categoría:</b> {{$libro->categoria}}</p>
+                <p><b>Categoría:</b> {{$categoria}}</p>
             </div>
             <div id="precio">
                 <div id="fondo-precio">
@@ -48,7 +53,7 @@
             </div>
             @if($libro->usuario_id != Auth::user()->id)
             <div id="compra">
-                <p id="vendedor">Vendido por </p>
+                <p>Vendido por {{$dueno_libro}}</p>
                 <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     <i class="fa-solid fa-envelope"></i> &nbsp; Enviar mensaje al vendedor
                 </button>
@@ -63,7 +68,7 @@
                                 <form action="{{ url('/mensaje')}}" method="post">
                                     @csrf
                                     <div class="mb-3">
-                                        <textarea class="form-control" name="mensaje" id="mensaje" placeholder="Escribe aquí tu mensaje..." cols="40" rows="5"></textarea>
+                                        <textarea class="form-control" name="mensaje" maxlength="150" id="mensaje" placeholder="Escribe aquí tu mensaje..." cols="40" rows="5"></textarea>
                                     </div>
                                     <input type="hidden" name="remitente" class="form-control" id="rem" value="{{Auth::user()->id}}">
                                     <input type="hidden" name="destinatario" class="form-control" id="des" value="{{$libro->usuario_id}}">
@@ -78,7 +83,7 @@
                 </div>
                 <br><br>
                 <div id="comprar">
-                    <button type="button" class="btn btn-success" id="btn-comprar">Comprar</button>
+                    <button type="button" class="btn btn-success" id="btn-comprar" onclick="comprar({{$libro->id}})">Comprar</button>
                 </div>
             </div>
             @endif
@@ -90,12 +95,8 @@ $libro_usuario_id = $libro->usuario_id;
 $usuario_id = Auth::user()->id;
 ?>
 <script>
-    //Pasamos número de usuario dueño del libro al código JavaScript
-    let lib_usu_id = {!! json_encode($libro_usuario_id) !!};
-    //Pasamos el id del libro
-    let libro_id =  {!! json_encode($libro->id) !!};
     //Pasamos el id del usuario autenticado
-    let usuario_id = {!! json_encode($libro->id) !!};
+    let usuario_id = {!! json_encode(Auth::user()->id) !!};
 </script>
 
 @push('head')

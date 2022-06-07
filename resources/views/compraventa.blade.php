@@ -39,6 +39,11 @@ $librosvendidos = Libro::whereRaw('usuario_id = ? and disponible = ?', [$user->i
 
             <div class="c-display">
                 <div id="l-compras" class="container">
+                    @if(count($pedidos) == 0)
+                    <div class="alert alert-secondary" role="alert">
+                        Todavía no has realizado ninguna compra.
+                    </div>
+                    @else
                     <table class="table">
                         <thead>
                             <tr>
@@ -84,9 +89,15 @@ $librosvendidos = Libro::whereRaw('usuario_id = ? and disponible = ?', [$user->i
                             @endforeach
                         </tbody>
                     </table>
+                    @endif
                 </div>
 
                 <div id="l-ventas" class="container" hidden="hidden">
+                    @if(count($librosvendidos) == 0)
+                    <div class="alert alert-secondary" role="alert">
+                        Todavía no has vendido ningún libro.
+                    </div>
+                    @else
                     <div class="accordion accordion-flush" id="accordion-ventas">
                         @foreach($librosvendidos as $libro)
                         <div class="accordion-item">
@@ -109,7 +120,7 @@ $librosvendidos = Libro::whereRaw('usuario_id = ? and disponible = ?', [$user->i
                                             Pedido realizado el día {{date('d/m/Y', strtotime($pedido_libro->fecha));}} a las {{date('H:i', strtotime($pedido_libro->fecha));}} <br><br>
                                             @if($pedido_libro->enviado == 0)
                                             <div class="alert alert-warning" role="alert">
-                                                El libro 
+                                                El libro todavía no se ha enviado. Por favor, introduce el número de seguimiento una vez hayas realizado el envío.
                                             </div>
                                             <br>
                                             <div class="input-group mb-3">
@@ -133,6 +144,7 @@ $librosvendidos = Libro::whereRaw('usuario_id = ? and disponible = ?', [$user->i
                         </div>
                         @endforeach
                     </div>
+                    @endif
                 </div>
             </div>
         </div>

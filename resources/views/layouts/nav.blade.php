@@ -27,6 +27,15 @@
         @stack('head')
     </head>
     <body>
+        <?php
+
+        use App\Models\Mensaje;
+        use App\Models\Carrito;
+
+$user_id = Auth::user()->id;
+        $unreadmessages = Mensaje::whereRaw('destinatario = ? and leido = 0', [$user_id])->get();
+        $itemscarrito = Carrito::where('usuario_id', '=', $user_id)->get();
+        ?>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Eighth navbar example">
             <div class="container">
                 @guest
@@ -43,8 +52,24 @@
                     <button type="button" onclick="window.location ='{{ url("login") }}'" class="btn btn-light boton">Iniciar sesión</button>
                     <button type="button" onclick="window.location ='{{ url("register")}}'" class="btn btn-light boton">Registrarse</button>
                     @else
-                    <button type="button" onclick="window.location ='{{ url("micarrito")}}'" class="btn btn-light boton"><i class="fa-solid fa-cart-shopping fa-lg"></i></button>
-                    <button type="button" onclick="window.location ='{{ url("mensajes")}}'" class="btn btn-light boton"><i class="fa-solid fa-message fa-lg"></i></button>
+                    <button type="button" onclick="window.location ='{{ url("micarrito")}}'" class="btn btn-light boton position-relative">
+                        <i class="fa-solid fa-cart-shopping fa-lg"></i>
+                        @if(count($itemscarrito) > 0)
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
+                            {{count($itemscarrito)}}
+                            <span class="visually-hidden">unread messages</span>
+                        </span>
+                        @endif
+                    </button>
+                    <button type="button" onclick="window.location ='{{ url("mensajes")}}'" class="btn btn-light boton position-relative">
+                        <i class="fa-solid fa-message fa-lg"></i>
+                        @if(count($unreadmessages) > 0)
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            {{count($unreadmessages)}}
+                            <span class="visually-hidden">unread messages</span>
+                        </span>
+                        @endif
+                    </button>
                     <button type="button" onclick="window.location ='{{ url("perfil")}}'" class="btn btn-light boton"><i class="fa-solid fa-user fa-lg"></i></button>
                     <button type="button" href="{{ route('logout') }}"
                             onclick="event.preventDefault();
