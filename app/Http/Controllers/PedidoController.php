@@ -74,7 +74,25 @@ class PedidoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $datos = request()->except("_token");
+        $pedido = Pedido::find($id);
+        
+        //Timestamps debe actualizarse a false para poder realizar la actualización sin errores
+        $pedido->timestamps = false;
+        
+        //Actualización del número de envío
+        if(array_key_exists('num_envio',$datos)){
+            $pedido->num_envio = $datos['num_envio'];
+            $pedido->enviado = 1;
+            $pedido->save();
+        }
+        
+        //Actualización del estado del pedido, que pasará a mostrarse como recibido
+        if(array_key_exists('recibido',$datos)){
+            $pedido->recibido = 1;
+            $pedido->save();
+        }
+        return response()->json($pedido);
     }
 
     /**

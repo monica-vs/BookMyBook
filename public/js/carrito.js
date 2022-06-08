@@ -1,4 +1,3 @@
-let ids_carrito = [];
 
 async function eliminar_item(id) {
     let url = "http://127.0.0.1:8000/carrito/" + id;
@@ -28,35 +27,37 @@ async function eliminar_item(id) {
 
 async function pagar() {
     console.log('Fuction pagar');
-
-
-    //Almacenaremos aquí la información del pedido creado en la tabla de pedidos, nos interesa especialemente el id generado.
-    let pedido = await hacerPedido();
-
-    //Añadimos los libros a la tabla de Pedidos_Detalle
-    let detallesPedido = await anadirDetallesPedido(pedido);
-
-
-    let url = "http://127.0.0.1:8000/carrito/" + user_id;
-
-    console.log('Pedido realizado correctamente');
-
-    //Borrar elementos del carrito
-
-    for (let i = 0; i < ids_carrito.length; i++) {
-        let borrado = await eliminar_item(ids_carrito[i]);
-        console.log(borrado);
+    
+    for(let i = 0; i < subtotales.length ; i++){
+        //Almacenaremos aquí la información del pedido creado en la tabla de pedidos, nos interesa especialemente el id generado.
+         let pedido = await hacerPedido(subtotales[i]);
+         
+         //Añadimos los libros a la tabla de Pedidos_Detalle
+         let detallesPedido = await anadirDetallesPedido(pedido, i+1);
+         
+         console.log('Subpedido realizado correctamente');
     }
-    window.location = "/compras-y-ventas";
+    
+     console.log('Pedido completado');
+     
+     //Borrar elementos del carrito
+     for (let j = 0; j < ids_carrito.length; j++) {
+     let borrado = await eliminar_item(ids_carrito[j]);
+     console.log(borrado);
+     }
+     
+     window.location = "/compras-y-ventas";
+     
 }
 
-async function hacerPedido() {
+async function hacerPedido(total) {
     console.log('Realizando pedido...');
     let url = "http://127.0.0.1:8000/pedido";
 
     //Obtención del token CSRF como autenticación
     let token = document.querySelector('meta[name="csrf-token"]').content;
-
+    
+    
     return fetch(url, {
         method: 'POST',
         body: JSON.stringify({
@@ -71,9 +72,10 @@ async function hacerPedido() {
             .then((datos) => {
                 return datos
             });
+     
 }
 
-async function anadirDetallesPedido(pedido) {
+async function anadirDetallesPedido(pedido, n) {
     console.log('Añadiendo detalles del pedido...');
     let url = "http://127.0.0.1:8000/pedidodetalle";
 
@@ -81,7 +83,8 @@ async function anadirDetallesPedido(pedido) {
     //Obtención del token CSRF como autenticación
     let token = document.querySelector('meta[name="csrf-token"]').content;
 
-    let libros_carrito = document.getElementsByClassName('idproducto');
+    let libros_carrito = document.getElementsByClassName('idproducto'+n);
+    
     for (let i = 0; i < libros_carrito.length; i++) {
         let libro = libros_carrito[i].innerText;
 
@@ -101,4 +104,5 @@ async function anadirDetallesPedido(pedido) {
                 });
     }
     return peticion;
+    
 }

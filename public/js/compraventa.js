@@ -15,34 +15,84 @@ ventas.addEventListener('click', function (e) {
 
 
 //Evento disparado por el botón de Aceptar (añadir número de envío)
-function anadirNumeroEnvio(id){
+function anadirNumeroEnvio(id) {
     //Obtención del número de envío
-    let input_envio = document.getElementById('input-envio'+id);
-    
-    //Obtención del texto de error y del botón
-    let error = document.getElementById('error'+id);
-    let boton = document.getElementById('btn-envio'+id);
-    
-    if(input_envio.value.length == 0){
-        error.hidden = false;
-        boton.disabled = true;
+    let input_envio = document.getElementById('input-envio' + id);
+
+    if (comprobarInput(id)) {
+        console.log(input_envio.value)
+        console.log(id);
+
+        let url = "http://127.0.0.1:8000/pedido/" + id;
+
+        //Obtención del token CSRF como autenticación
+        let token = document.querySelector('meta[name="csrf-token"]').content;
+        console.log(url, token);
+
+        
+        let body = {};
+        body.num_envio = input_envio.value;
+        console.log(body);
+
+        const requestOptions = {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': token
+            },
+            body: JSON.stringify(body)
+        };
+        fetch(url, requestOptions)
+                .then(response => response.json())
+                .then(data => console.log(data));
+
     } else {
-        error.hidden = true;
-        console.log(input_envio.value);
+        console.log('Error');
     }
 }
 
-function comprobarInput(id){
+function confirmarRecepcion(id){
+    let url = "http://127.0.0.1:8000/pedido/" + id;
+
+        //Obtención del token CSRF como autenticación
+        let token = document.querySelector('meta[name="csrf-token"]').content;
+        console.log(url, token);
+
+        
+        let body = {};
+        body.recibido = 1;
+        console.log(body);
+
+        const requestOptions = {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': token
+            },
+            body: JSON.stringify(body)
+        };
+        fetch(url, requestOptions)
+                .then(response => response.json())
+                .then(data => console.log(data));
+}
+
+function comprobarInput(id) {
     //Obtención del texto de error y del boton
-    let error = document.getElementById('error'+id);
-    let boton = document.getElementById('btn-envio'+id);
-    if(event.target.value.length == 0){
+    let error = document.getElementById('error' + id);
+    let boton = document.getElementById('btn-envio' + id);
+    let input_envio = document.getElementById('input-envio' + id);
+
+    let success = false;
+    if (input_envio.value.length == 0) {
         error.hidden = false;
         boton.disabled = true;
+        success = false;
     } else {
         error.hidden = true;
         boton.disabled = false;
+        success = true;
     }
+    return success;
 }
 
 function mostrar(e) {

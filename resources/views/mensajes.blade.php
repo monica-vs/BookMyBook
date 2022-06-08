@@ -22,7 +22,7 @@ $enviados = Mensaje::where('remitente', '=', $user_id)->orderBy('id', 'DESC')->g
             <div class="tab-pane fade show active" id="v-pills-entrada" role="tabpanel" aria-labelledby="v-pills-entrada-tab" tabindex="0">
                 @if(count($recibidos) == 0)
                 <div class="alert alert-secondary" role="alert">
-                   No hay mensajes para mostrar.
+                    No hay mensajes para mostrar.
                 </div>
                 @endif
                 <div class="accordion" id="accordionExample">
@@ -83,7 +83,7 @@ $enviados = Mensaje::where('remitente', '=', $user_id)->orderBy('id', 'DESC')->g
             <div class="tab-pane fade" id="v-pills-enviados" role="tabpanel" aria-labelledby="v-pills-enviados-tab" tabindex="0">
                 @if(count($enviados) == 0)
                 <div class="alert alert-secondary" role="alert">
-                   No hay mensajes para mostrar.
+                    No hay mensajes para mostrar.
                 </div>
                 @endif
                 <div class="accordion" id="accordionExample2">

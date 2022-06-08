@@ -32,9 +32,12 @@
         use App\Models\Mensaje;
         use App\Models\Carrito;
 
-$user_id = Auth::user()->id;
-        $unreadmessages = Mensaje::whereRaw('destinatario = ? and leido = 0', [$user_id])->get();
-        $itemscarrito = Carrito::where('usuario_id', '=', $user_id)->get();
+        $user = Auth::user();
+        if ($user != null) {
+            $user_id = Auth::user()->id;
+            $unreadmessages = Mensaje::whereRaw('destinatario = ? and leido = 0', [$user_id])->get();
+            $itemscarrito = Carrito::where('usuario_id', '=', $user_id)->get();
+        }
         ?>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Eighth navbar example">
             <div class="container">

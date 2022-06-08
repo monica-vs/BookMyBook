@@ -16,11 +16,15 @@ $carrito = Carrito::where('usuario_id', '=', $user_id)->get();
 //Por cada vendedor se realizará un pedido, así que comprobamos cuántos vendedores hay en el carrito
 $vendedores = [];
 
+//Obtenemos los ids de los items del carrito para luego eliminarlos, tras hacer el pedido
+$ids_carrito = [];
+
 foreach ($carrito as $c) {
     $libro = Libro::find($c->libro_id);
     if (!in_array($libro->usuario_id, $vendedores)) {
         $vendedores[] = $libro->usuario_id;
     }
+    $ids_carrito[] = $c->id;
 }
 
 //Variable que almacena el número de subpedidos
@@ -147,6 +151,10 @@ $subtotales = [];
     //Pasamos número de usuario autenticado al código JavaScript
     let user_id = {!! json_encode($user_id) !!}
     ;
+    //Pasamos los subtotales de los pedidos a JavaScript
+    let subtotales = {!! json_encode($subtotales) !!};
+    //Pasamos los ids de carrito para borrarlos tras hacer el pedido
+    let ids_carrito = {!! json_encode($ids_carrito) !!};
 </script>
 
 @push('head')
