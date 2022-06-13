@@ -31,20 +31,20 @@
                         @csrf
                         <div class="mb-3">
                             <label for="ISBN" class="form-label">ISBN</label>
-                            <input type="text" class="form-control" name="ISBN" required>
+                            <input type="text" maxlength="13" class="form-control" name="ISBN" required>
                         </div>
                         <div class="mb-3">
                             <label for="titulo" class="form-label">Título</label>
-                            <input type="text" class="form-control" name="titulo" required>
+                            <input type="text" maxlength="60" class="form-control" name="titulo" required>
                         </div>
                         <div class="mb-3">
                             <label for="autor" class="form-label">Autor</label>
-                            <input type="text" class="form-control" name="autor" required>
+                            <input type="text" maxlength="50" class="form-control" name="autor" required>
                         </div>
                         <div class="mb-3">
                             <label for="precio" class="form-label">Precio</label>
                             <div class="input-group mb-3 w-25">
-                                <input type="text" placeholder="Ej. 10.75" class="form-control w-25" name="precio" required>
+                                <input type="text" maxlength="6" placeholder="Ej. 10.75" class="form-control w-25" name="precio" oninput="comprobarPrecio()" required>
                             <span class="input-group-text" id="eur-addon">€</span>
                             </div>
                         </div>
@@ -76,7 +76,7 @@
                             </select>
                         </div>
                         <div class="col-12 mt-2">
-                            <input class="btn btn-primary" type="submit" value="Añadir">
+                            <input id="btn-anadir" class="btn btn-primary" type="submit" value="Añadir">
                         </div>
                     </form>
                 </div>

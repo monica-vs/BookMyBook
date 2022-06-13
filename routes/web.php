@@ -70,7 +70,7 @@ Route::get('/libro/{n}', function ($n) {
 Route::resource('libros', LibroController::class)->middleware('auth');
 Route::resource('categorias', CategoriaController::class)->middleware('auth');
 Route::resource('users', UserController::class);
-Route::resource('userinfo', UserInfoController::class);
+Route::resource('userinfo', UserInfoController::class)->middleware('auth');
 Route::resource('carrito', CarritoController::class)->middleware('auth');
 Route::resource('pedido', PedidoController::class)->middleware('auth');
 Route::resource('pedidodetalle', PedidoDetalleController::class)->middleware('auth');

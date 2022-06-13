@@ -10,9 +10,6 @@
     
     $lib = json_decode($libro);
     $libro = $lib[0];
-    if ($libro->imagen == null) {
-        $libro->imagen = asset('img/no-image.png');
-    }
     $categoria = Categoria::find($libro->categoria)->titulo;
     $dueno_libro = User::find($libro->usuario_id)->name;
     ?>
@@ -35,7 +32,7 @@
     <div class="libro-detalles">
         <div class="libro-imagen">
             @if($libro->imagen == null)
-            <img src="{{ asset('storage').'/no-image.png'}}" alt="Imagen de libro" id="imagen-libro"/>
+            <img src="/img/no-image.png" alt="Imagen de libro" id="imagen-libro"/>
             @else
             <img src="{{ asset('storage').'/'.$libro->imagen}}" alt="Imagen de libro" id="imagen-libro"/>
             @endif

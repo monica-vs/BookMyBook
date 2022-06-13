@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-
+//Función que hace una petición al controlador de mensajes para marcarlo como leído
 function marcarLeido(id) {
     console.log(id);
 

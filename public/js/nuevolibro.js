@@ -12,6 +12,7 @@ misLibros.addEventListener('click', function (e) {
     mostrar(e);
 })
 
+//Fetch de obtención de libros
 let url = "http://127.0.0.1:8000/libros";
 fetch(url)
         .then((respuesta) => respuesta.json())
@@ -37,6 +38,7 @@ function mostrar(e) {
     misLibros.classList.toggle('link-dark');
 }
 
+//Impresión de tabla usando JavaScript para modificar el DOM
 function imprimir(datos) {
     let mislibros = new Array();
     let cTable = document.getElementById('c-table');
@@ -110,18 +112,18 @@ function eliminarLibro(e) {
     console.log(id);
 
     let url = "http://127.0.0.1:8000/libros/" + id;
-    
+
     //Obtención del token CSRF como autenticación
     let token = document.querySelector('meta[name="csrf-token"]').content;
     console.log(url, token);
-    
+
     let xhr = new XMLHttpRequest();
     xhr.open("DELETE", url);
-    
-    
+
+
     xhr.setRequestHeader("Accept", "*/*");
     xhr.setRequestHeader('X-CSRF-TOKEN', token);
-    
+
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
             console.log(xhr.status);
@@ -130,4 +132,23 @@ function eliminarLibro(e) {
     };
 
     xhr.send();
+}
+
+function comprobarPrecio() {
+    //Este patrón se asegurará de que el precio introducido sea un número (10) o un decimal con punto y uno o dos decimales (10.7 o 10.75)
+    let patron = /^\d*(\.\d{1,2})?$/;
+    let precio = event.target.value;
+
+    //Obtener botón para desactivar
+    let boton = document.getElementById('btn-anadir');
+
+    if (precio.match(patron)) {
+        //Cumple el patrón
+        boton.disabled = false;
+        event.target.classList.remove('erronea');
+    } else {
+        //No cumple el patrón
+        boton.disabled = true;
+        event.target.classList.add('erronea');
+    }
 }

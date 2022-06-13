@@ -1,4 +1,4 @@
-
+//Elimina item del carrito
 async function eliminar_item(id) {
     let url = "http://127.0.0.1:8000/carrito/" + id;
 
@@ -50,6 +50,7 @@ async function pagar() {
      
 }
 
+//Inserta datos en la tabla de pedidos
 async function hacerPedido(total) {
     console.log('Realizando pedido...');
     let url = "http://127.0.0.1:8000/pedido";
@@ -75,6 +76,7 @@ async function hacerPedido(total) {
      
 }
 
+//Inserta datos en la tabla de pedidos_detalle
 async function anadirDetallesPedido(pedido, n) {
     console.log('Añadiendo detalles del pedido...');
     let url = "http://127.0.0.1:8000/pedidodetalle";

@@ -1,3 +1,5 @@
+//Control de las pestañas
+
 let listaCompras = document.getElementById('l-compras');
 let listaVentas = document.getElementById('l-ventas');
 listaVentas.hidden = true;
@@ -44,13 +46,14 @@ function anadirNumeroEnvio(id) {
         };
         fetch(url, requestOptions)
                 .then(response => response.json())
-                .then(data => console.log(data));
+                .then(() => window.location.href = '/compras-y-ventas');
 
     } else {
         console.log('Error');
     }
 }
 
+//Petición con método PUT al controller de pedido para marcarlo como recibido
 function confirmarRecepcion(id){
     let url = "http://127.0.0.1:8000/pedido/" + id;
 
@@ -73,9 +76,10 @@ function confirmarRecepcion(id){
         };
         fetch(url, requestOptions)
                 .then(response => response.json())
-                .then(data => console.log(data));
+                .then(() => window.location.href = '/compras-y-ventas');
 }
 
+//Control del input del número de envío. Si no es válido, muestra un mensaje y deshabilita el botón
 function comprobarInput(id) {
     //Obtención del texto de error y del boton
     let error = document.getElementById('error' + id);

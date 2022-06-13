@@ -150,6 +150,7 @@ function filtrar(categoria_id) {
     }
 }
 
+//Función que añade el libro al carrito del usuario
 function comprar(id) {
     console.log(id);
 

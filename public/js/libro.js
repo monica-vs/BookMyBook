@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+//Añade el libro al carrito del usuario haciendo una petición con método POST
 function comprar(id) {
     console.log(id);
     console.log(usuario_id);

@@ -2,7 +2,7 @@
 
 @section('content')
 <?php
-
+use App\Models\User;
 use App\Models\UserInfo;
 use App\Models\Libro;
 use App\Models\Carrito;
@@ -42,10 +42,10 @@ $subtotales = [];
 <div class="container">
     <h1>Carrito</h1>
     <br><br>
-    @if($carrito != null)
+    @if(count($carrito) != 0)
     <div>
         @foreach($vendedores as $vendedor)
-        <?php $n_pedido++; $subtotal = 0;?>
+        <?php $n_pedido++; $subtotal = 0; $nombre_vendedor = User::find($vendedor)->name;?>
         <h3>Pedido {{$n_pedido}}</h3>
         <table class="table table-hover">
             <thead>
@@ -73,7 +73,7 @@ $subtotales = [];
                 @endforeach
             </tbody>
         </table>
-        <p class="text-end"><b>Subtotal: {{number_format($subtotal, 2)}}€</b></p>
+        <p class="text-end"><b>Subtotal: {{number_format($subtotal, 2)}}€</b><br>Vendido y enviado por {{$nombre_vendedor}}</p>
         <br><br>
         <?php $total_pedido += $subtotal; $subtotales[] = $subtotal;?>
         @endforeach
@@ -84,12 +84,12 @@ $subtotales = [];
         <div id="d-precio">
             <p id="precio"></p>
             <button class="btn btn-success" data-bs-toggle="offcanvas" data-bs-target="#offcanvasPedido">Realizar pedido/s</button>
-            <button class="btn btn-secondary">Seguir comprando</button>
+            <button class="btn btn-secondary" onclick="location.href = '/explorar';">Seguir comprando</button>
         </div>
     </div>
 
     @else
-    <div id="sin-cuenta" hidden="hidden">
+    <div id="sin-cuenta">
         <div id="carrito-alerta" class="alert alert-secondary" role="alert">Tu carrito está vacío. Añade algún libro para proceder a realizar un pedido.</div>
     </div>
     @endif
